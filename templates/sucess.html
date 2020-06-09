@@ -1,0 +1,17 @@
+
+{% block content %}
+<h2>Homepage</h2>
+<p>Welcome to My Site, 
+    {% if user.is_authenticated and user.is_superuser %}
+        {{ user.first_name }} &#10647; Super User &#10648; !
+        <a href="{% url 'change_password' %}" class="ml-2">Change Password</a> |
+        <a href="{% url 'logout_des' %}" class="ml-2">Logout</a>
+    {% elif  user.is_authenticated %}
+        {{ user.first_name }} !
+        <a href="{% url 'change_password' %}" class="ml-2">Change Password</a> |
+        <a href="{% url 'logout_des' %}" class="ml-2">Logout</a>
+    {% else %}
+        visitor!
+    {% endif %}</p>
+    
+{% endblock %}
