@@ -3,13 +3,16 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
+from django.views.decorators.csrf import csrf_exempt
 
+@csrf_exempt
 def sucess(request):
     return render(request, "sucess.html")
-
+@csrf_exempt
 def home_task(request):
     return render(request, "home_task.html")
 # Create your views here.
+@csrf_exempt
 def login_des(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -26,6 +29,7 @@ def login_des(request):
 
     return render(request, "login_des.html")
 
+@csrf_exempt    
 def register_des(request):
 
     if request.method == 'POST':
@@ -56,10 +60,12 @@ def register_des(request):
         return redirect("login_des")
     return render(request, "register_des.html")
 
+@csrf_exempt
 def logout_des(request):
     auth.logout(request)
     return redirect('/')
 
+@csrf_exempt
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)

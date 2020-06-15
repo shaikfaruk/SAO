@@ -1,6 +1,18 @@
 
 {% block content %}
 <h2>Homepage</h2>
+<div class="col-6 col-lg-4 col-xl-3 panel-icon">
+    <a class="panel hover-emboss base-margin-bottom"  data-icon="icon-active-speaker-cross" data-balloon="Click to copy" data-balloon-pos="up" data-balloon-length="medium">
+        <div class="flex-center-vertical">
+            <div class="flex-center">
+                <span class="icon-active-speaker-cross icon-size-24"></span>
+            </div>
+            <div class="flex-fluid half-margin-left text-ellipsis">
+                <div class="text-ellipsis">icon-active-speaker-cross</div>
+            </div>
+        </div>
+    </a>
+</div>
 <p>Welcome to My Site, 
     {% if user.is_authenticated and user.is_superuser %}
         {{ user.first_name }} &#10647; Super User &#10648; !
