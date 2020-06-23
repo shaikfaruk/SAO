@@ -1,124 +1,142 @@
-<!DOCTYPE html>
-<html>
-    
-<head>
-	<title>Login</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
-
-	<style>
-		body,
-		html {
-			margin: 0;
-			padding: 0;
-			height: 100%;
-			background: #7abecc !important;
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="icon" href="{% static 'image/favicon.png' %}" type="image/x-icon">
+		<meta content='text/html;charset=utf-8' http-equiv='Content-Type'>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
+		<link rel="stylesheet" href="https://fireandise.cisco.com/commonbeta/cisco/css/cisco-atomic-ui.dev.css">
+		<script type="text/javascript" src="https://fireandise.cisco.com/commonbeta/js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="https://fireandise.cisco.com/commonbeta/js/popper.min.js"></script>
+		<script type="text/javascript" src="https://fireandise.cisco.com/commonbeta/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="https://fireandise.cisco.com/commonbeta/js/bootstrap-table.min.js"></script>
+		<script type="text/javascript" src="https://fireandise.cisco.com/commonbeta/js/bootstrap-table-filter-control.min.js"></script>
+		<script type="text/javascript" src="https://fireandise.cisco.com/commonbeta/js/bootbox.min.js"></script>
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            .footer {
+              position: fixed;
+              left: 0;
+              bottom: 0;
+              width: 100%;            
+			}
+			.login-box{
+				width: 320px;
+				height: 580px;
+				color: black;
+				top: 50%;
+				left: 50%;
+				position: absolute;
+				transform: translate(-50%,-50%);
+				box-sizing: border-box;
+				padding: 70px 30px;
+				border-style: double;
+			}
+			h2{
+				margin: 0;
+				padding: 0 0 20px;
+				text-align: center;
+				font-size: 22px;
+			}
+			.login-box p{
+				margin: 0;
+				padding: 0;
+				font-weight: bold;
+			}
+			.login-box input{
+				width: 100%;
+				margin-bottom: 20px;
+				
+			}
+			.login-box input[type="text"], input[type="password"]
+			{
+				border-style: solid;
+				outline: none;
+				height: 30px;
+				color: black;
+				font-size: 16px;
+			}
+			.login-box input[type="submit"]
+			{
+				border: none;
+				outline: none;
+				height: 40px;
+				background: #1c8adb;
+				color: #fff;
+				font-size: 18px;
+				border-radius: 20px;
+			}
+			.login-box input[type="submit"]:hover
+			{
+				cursor: pointer;
+				background: #39dc79;
+				color: #000;
+			}
+			
+			.login-box a{
+				text-decoration: none;
+				font-size: 14px;
+				color: #fff;
+			}
+			.login-box a:hover
+			{
+				color: #39dc79;
+			}
+        </style>
+        <title>SAO</title>
+        <link rel="stylesheet" href="{% static 'css/cui-standard.min.css' %}">
+        <script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
+		<script src="../public/js/styleguide.js"></script>
+		<script>  
+			function validateform(){  
+			var first_name=document.myform.first_name.value;
+			var last_name=document.myform.last_name.value;  			  
+			var email=document.myform.email.value;  			  
+			var username=document.myform.username.value;  			  
+			var password1=document.myform.password1.value;  			  
+			var password2=document.myform.password2.value;  			    			  
+			if (first_name==null || first_name=="" || last_name==null || last_name=="" || email==null || email=="" || username==null || username=="" || password1==null || password1=="" || password2==null || password2==""){  
+			  alert("All field's are mandatory, Please Fill all field's");  
+			  return false;  
+			}
 		}
-		.user_card {
-			width: 350px;
-			margin-top: auto;
-			margin-bottom: auto;
-			background: #74cfbf;
-			position: relative;
-			display: flex;
-			justify-content: center;
-			flex-direction: column;
-			padding: 10px;
-			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-			border-radius: 5px;
-
-		}
-
-		.form_container {
-			margin-top: 20px;
-		}
-
-		#form-title{
-			color: #fff;
-		}
-		.login_btn {
-			width: 100%;
-			background: #33ccff !important;
-			color: white !important;
-		}
-		.login_btn:focus {
-			box-shadow: none !important;
-			outline: 0px !important;
-		}
-		.login_container {
-			padding: 0 2rem;
-		}
-		.input-group-text {
-			background: #f7ba5b !important;
-			color: white !important;
-			border: 0 !important;
-			border-radius: 0.25rem 0 0 0.25rem !important;
-		}
-		.input_user,
-		.input_pass:focus {
-			box-shadow: none !important;
-			outline: 0px !important;
-		}
-
-	</style>
-
-</head>
-<body>
-	<div class="container h-100">
-		<div class="d-flex justify-content-center h-100">
-			<div class="user_card">
-				<div class="d-flex justify-content-center">
-					<h3 id="form-title">REGISTER ACCOUNT</h3>
-				</div>
-				<div class="d-flex justify-content-center form_container">
-
-					<form action="register_des" method ="POST">
-						{% csrf_token %}
-						<div class="input-group mb-3">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-user"></i></span>
-							</div>
-							<input type="text" name="first_name">
-						</div>
-						<div class="input-group mb-2">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
-							</div>
-							<input type="text" name="last_name">
-						</div>
-						<div class="input-group mb-2">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
-							</div>
-							<input type="text" name="username">
-						</div>
-						<div class="input-group mb-2">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
-							</div>
-							<input type="text" name="email">
-						</div>
-						<div class="input-group mb-2">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
-							</div>
-							<input type="password" name="password1">
-						</div>
-						<div class="input-group mb-2">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-key"></i></span>
-							</div>
-							<input type="password" name="password2">
-						</div>
-
-				   		<div class="d-flex justify-content-center mt-3 login_container">
-				 			<input class="btn login_btn" type="submit" value="Register Account">
-				   		</div>
-					</form>
-				</div>
+		</script>  
+    </head>
+    <body class="cui">
+        <nav class="header" id="styleguideheader" role="navigation">
+            <div class="container-fluid">
+                <div class="header-panels">
+                    <div class="header-panel hidden-md-down">
+                        <img src="{% static 'image/Cisco.png' %}" width="75" height="160">
+                    </div>
+                    <div tabindex="0" class="hidden-md-down" style="max-width:100%; margin:10%;">
+                        <h1 class="header__title">
+                            <span>NSO Sky</span>
+                        </h1>
+                    </div>
+                    <div class="header-panel header-panel--right hidden-md-down">
+                        <a href="{% url 'home_task' %}" class="header-item" >
+                            <img src="{% static 'image/home.png' %}" width="35" height="70">
+                        </a>
+                        <a href="{% url 'login_des' %}" class="header-item">Login</a>
+                        <a href="{% url 'register_des' %}" class="header-item">Sign Up</a>
+                    </div>
+                </div>
+            </div>
+		</nav>
+		<div class="login-box">
+				<h2>Register Account</h2>
+				<form name ="myform" action="register_des" method ="POST" onsubmit="return validateform()">
+					{% csrf_token %}
+						<input type="text" name="first_name" placeholder="First Name..."  class="form-control">
+						<input type="text" name="last_name" placeholder="Last Name..." class="form-control">
+						<input type="text" name="username" placeholder="Username..." class="form-control">
+						<input type="text" name="email" placeholder="Email..." class="form-control">
+						<input type="password" name="password1" placeholder="Enter Password..." class="form-control">
+						<input type="password" name="password2" placeholder="Re-Enter Password..." class="form-control">
+						<input class="btn login_btn" type="submit" value="Register Account">
+				</form>
 				<div class="d-flex justify-content-center links">
 					{% for message in messages %}
 					<p>
@@ -126,35 +144,29 @@
 					</p>
 					{% endfor %}
 				</div>
+		
 				<div class="mt-4">
 					<div class="d-flex justify-content-center links">
 						Already have an account? <a href="{% url 'login_des' %}" class="ml-2">Login</a>
 					</div>
-					
+			
 				</div>
-			</div>
 		</div>
-	</div>
-	<script>
-						/* Because i didnt set placeholder values in forms.py they will be set here using vanilla Javascript
-		//We start indexing at one because CSRF_token is considered and input field 
-		 */
+				
+                <footer class="footer">
+                    <div class="footer__links">
+                        <ul class="list list--inline">
+                            <li><a href="http://www.cisco.com/cisco/web/siteassets/contacts/index.html" target="_blank">Contacts</a></li>
+                            <li><a href="https://secure.opinionlab.com/ccc01/o.asp?id=jBjOhqOJ" target="_blank">Feedback</a></li>
+                            <li><a href="https://www.cisco.com/c/en/us/about/help.html" target="_blank">Help</a></li>
+                            <li><a href="http://www.cisco.com/c/en/us/about/sitemap.html" target="_blank">Site Map</a></li>
+                            <li><a href="https://www.cisco.com/c/en/us/about/legal/terms-conditions.html" target="_blank">Terms & Conditions</a></li></li>
+                            <li><a href="https://www.cisco.com/c/en/us/about/legal/privacy-full.html" target="_blank">Privacy Statement</a></li>
+                            <li><a href="https://www.cisco.com/c/en/us/about/legal/privacy-full.html#cookies" target="_blank">Cookie Policy</a></li>
+                            <li><a href="https://www.cisco.com/c/en/us/about/legal/trademarks.html" target="_blank">Trademarks</a></li>
+                        </ul>
+                    </div>
+                </footer>
 
-		//Query All input fields
-		
-		var form_fields = document.getElementsByTagName('input')
-		form_fields[1].placeholder='First Name..';
-		form_fields[2].placeholder='Last Name..';
-		form_fields[3].placeholder='Username...';
-		form_fields[4].placeholder='Email...';
-		form_fields[5].placeholder='Enter Password...';
-		form_fields[6].placeholder='Re-enter Password...';
-		
-
-
-		for (var field in form_fields){	
-			form_fields[field].className += ' form-control'
-		}
-	</script>
-</body>
+	</body>
 </html>

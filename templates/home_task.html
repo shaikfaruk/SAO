@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <link rel="icon" href="http://cisco-ui.cisco.com/assets/img/favicon.png" type="image/x-icon">
+        <link rel="icon" href="{% static 'image/favicon.png' %}" type="image/x-icon">
 		<meta content='text/html;charset=utf-8' http-equiv='Content-Type'>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
 		<link rel="stylesheet" href="https://fireandise.cisco.com/commonbeta/cisco/css/cisco-atomic-ui.dev.css">
@@ -32,17 +32,19 @@
             <div class="container-fluid">
                 <div class="header-panels">
                     <div class="header-panel hidden-md-down">
-                        <a class="header__logo" href="http://www.cisco.com" target="_blank">
-                            <span class="icon-cisco"></span>
-						</a>
+                        <img src="{% static 'image/Cisco.png' %}" width="75" height="160">
+                    </div>
+                    <div tabindex="0" class="hidden-md-down" style="max-width:100%; margin:10%;">
                         <h1 class="header__title">
-                            <span>SAO</span>
+                            <span>NSO Sky</span>
                         </h1>
                     </div>
                     <div class="header-panel header-panel--right hidden-md-down">
-                        <a href="{% url 'home_task' %}" class="header-item" title="UI Kit Home"><span class="icon-home"></span></a>
-                        <a href="{% url 'register_des' %}" class="header-item">Login</a>
-                        <a href="{% url 'login_des' %}" class="header-item">Sign Up</a>
+                        <a href="{% url 'home_task' %}" class="header-item" >
+                            <img src="{% static 'image/home.png' %}" width="35" height="70">
+                        </a>
+                        <a href="{% url 'login_des' %}" class="header-item">Login</a>
+                        <a href="{% url 'register_des' %}" class="header-item">Sign Up</a>
                     </div>
                 </div>
             </div>
